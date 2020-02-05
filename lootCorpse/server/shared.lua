@@ -24,14 +24,14 @@ end
 function hasLootPermission(id)
     local player = ESX.GetPlayerFromId(id)
 
-    if #Config.AllowedGroups > 0 then
-        if not Config.AllowedGroups[player.getGroup()] then
+    if #lcConfig.AllowedGroups > 0 then
+        if not lcConfig.AllowedGroups[player.getGroup()] then
             return false
         end
     end
 
-    if #Config.AllowedJobs > 0 then
-        if not Config.AllowedJobs[player.getJob()] then
+    if #lcConfig.AllowedJobs > 0 then
+        if not lcConfig.AllowedJobs[player.getJob()] then
             return false
         end
     end
@@ -62,7 +62,7 @@ function canLoot(id)
     end
 
     for _, account in ipairs(player.getAccounts()) do
-        if Config.EnableAccounts[account.name] then
+        if lcConfig.EnableAccounts[account.name] then
             if account.money > 0 then
                 return true
             end
@@ -136,7 +136,7 @@ function getLoot(id)
     -- ACCOUNTS --
 
     for _, account in ipairs(player.getAccounts()) do
-        if Config.EnableAccounts[account.name] then
+        if lcConfig.EnableAccounts[account.name] then
             if account.money > 0 then
                 local data = {
                     value = account.money,

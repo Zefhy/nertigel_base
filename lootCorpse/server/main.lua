@@ -1,5 +1,5 @@
 local function notify(target, text)
-    if Config.UsePNotify then
+    if lcConfig.UsePNotify then
         TriggerClientEvent('pNotify:SendNotification', target, {
             type = 'warning',
             text = text,

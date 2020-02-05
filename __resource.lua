@@ -18,7 +18,7 @@ client_scripts {
     'lootCorpse/locales/br.lua',
     'lootCorpse/config.lua',
     'lootCorpse/client/utils.lua',
-    'lootCorpse/client/main.lua',
+    'lootCorpse/client/main.lua'
 }
 
 server_scripts {
@@ -29,6 +29,7 @@ server_scripts {
 	'medSystem/server.lua',
 
 	-- cocaine System
+	'cocaineSystem/config.lua',
 	'cocaineSystem/server.lua',
 
 	-- loot Corpse
@@ -37,5 +38,5 @@ server_scripts {
     'lootCorpse/config.lua',
     'lootCorpse/server/shared.lua',
     'lootCorpse/server/loadout.lua',
-    'lootCorpse/server/main.lua',
+    'lootCorpse/server/main.lua'
 }

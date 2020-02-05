@@ -7,7 +7,7 @@ AddEventHandler("KCoke:get", function()
 	local xPlayer = ESX.GetPlayerFromId(_source)
 
 	if xPlayer.getInventoryItem('cokeleaf').count <= 1000 then
-		xPlayer.addInventoryItem('cokeleaf', Config.LeafPickup)
+		xPlayer.addInventoryItem('cokeleaf', cokeConfig.LeafPickup)
 	else
 		TriggerClientEvent('esx:showNotification', source, '~r~You cant hold any more coca leaves')
 	end	
@@ -18,8 +18,8 @@ AddEventHandler("KCoke:bag", function()
     local _source = source	
 	local xPlayer = ESX.GetPlayerFromId(_source)
 
-	if xPlayer.getInventoryItem('cokeleaf').count >= Config.LeavesPerBag then
-		xPlayer.removeInventoryItem('cokeleaf', Config.LeavesPerBag) 
+	if xPlayer.getInventoryItem('cokeleaf').count >= cokeConfig.LeavesPerBag then
+		xPlayer.removeInventoryItem('cokeleaf', cokeConfig.LeavesPerBag) 
 		xPlayer.addInventoryItem('coke', 1) 
 	else
 		TriggerClientEvent('esx:showNotification', source, '~r~Not enough coca leaves')
@@ -31,8 +31,8 @@ AddEventHandler("KCoke:bagging", function()
     local _source = source	
 	local xPlayer = ESX.GetPlayerFromId(_source)
 
-	if xPlayer.getInventoryItem('coke').count >= Config.BagsPerKilo then
-		xPlayer.removeInventoryItem('coke', Config.BagsPerKilo) 
+	if xPlayer.getInventoryItem('coke').count >= cokeConfig.BagsPerKilo then
+		xPlayer.removeInventoryItem('coke', cokeConfig.BagsPerKilo) 
 		xPlayer.addInventoryItem('coke_pooch', 1) 
 	else
 		TriggerClientEvent('esx:showNotification', source, '~r~Not enough coke bags')
@@ -44,8 +44,8 @@ AddEventHandler("KCoke:processing", function()
     local _source = source	
 	local xPlayer = ESX.GetPlayerFromId(_source)
 
-	if xPlayer.getInventoryItem('cokeleaf').count >= Config.LeavesPerBag then
-		xPlayer.removeInventoryItem('cokeleaf', Config.LeavesPerBag) 
+	if xPlayer.getInventoryItem('cokeleaf').count >= cokeConfig.LeavesPerBag then
+		xPlayer.removeInventoryItem('cokeleaf', cokeConfig.LeavesPerBag) 
 		xPlayer.addInventoryItem('coke', 1) 
 	else
 		TriggerClientEvent('esx:showNotification', source, '~r~Not enough coca leaves')

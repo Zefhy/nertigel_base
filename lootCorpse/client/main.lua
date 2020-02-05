@@ -31,7 +31,7 @@ local function checkLoot(range)
         local ped = GetPlayerPed(player)
 
         if user ~= ped and DoesEntityExist(ped) then
-            if IsPedDeadOrDying(ped) and GetEntitySpeed(ped) <= Config.LootSpeed then
+            if IsPedDeadOrDying(ped) and GetEntitySpeed(ped) <= lcConfig.LootSpeed then
                 table.insert(ids, GetPlayerServerId(player))
             end
         end
@@ -66,11 +66,11 @@ local function checkStop()
     local ped = PlayerPedId()
     local dist = getDistance(ped, lootPed)
 
-    if dist > Config.LootDistance then
+    if dist > lcConfig.LootDistance then
         return true
     end
 
-    if GetEntitySpeed(lootPed) > Config.LootSpeed then
+    if GetEntitySpeed(lootPed) > lcConfig.LootSpeed then
         return true
     end
 
@@ -102,12 +102,12 @@ local function tickNotLooting()
         local pos = GetEntityCoords(ped)
         local dist = getDistance(user, ped)
 
-        if dist <= Config.MarkerDistance then
+        if dist <= lcConfig.MarkerDistance then
             showMarker(
-                Config.MarkerType,
-                pos.x, pos.y, pos.z + Config.MarkerHeight,
-                Config.MarkerScale,
-                table.unpack(Config.MarkerColor)
+                lcConfig.MarkerType,
+                pos.x, pos.y, pos.z + lcConfig.MarkerHeight,
+                lcConfig.MarkerScale,
+                table.unpack(lcConfig.MarkerColor)
             )
         end
 
@@ -118,10 +118,10 @@ local function tickNotLooting()
         end
     end
 
-    if closestDistance <= Config.LootDistance then
-        showHelpText(_U('press to loot', '~' .. Config.LootInputName .. '~'))
+    if closestDistance <= lcConfig.LootDistance then
+        showHelpText(_U('press to loot', '~' .. lcConfig.LootInputName .. '~'))
 
-        if IsControlJustPressed(0, Config.LootInputCode) then
+        if IsControlJustPressed(0, lcConfig.LootInputCode) then
             looting = true
 
             lootPlayer = closestPlayer
@@ -169,7 +169,7 @@ local function showLootMenu(data)
     ESX.UI.Menu.Open(
         'default',
         GetCurrentResourceName(),
-        Config.MenuType,
+        lcConfig.MenuType,
         {
             title = _U('loot inventory'),
             align = 'bottom-right',
@@ -217,7 +217,7 @@ AddEventHandler('loot2:c:filtered',
 RegisterNetEvent('loot2:c:got')
 AddEventHandler('loot2:c:got',
     function(data)
-        TaskStartScenarioInPlace(PlayerPedId(), Config.LootAnimation, 0, false)
+        TaskStartScenarioInPlace(PlayerPedId(), lcConfig.LootAnimation, 0, false)
         ESX.UI.Menu.CloseAll()
         showLootMenu(data)
     end)
@@ -287,11 +287,11 @@ Citizen.CreateThread(
         while true do
             if looting then
                 tickLooting()
-                Citizen.Wait(Config.CheckInterval)
+                Citizen.Wait(lcConfig.CheckInterval)
             elseif tickNotLooting() then
                 Citizen.Wait(1)
             else
-                Citizen.Wait(Config.CheckInterval)
+                Citizen.Wait(lcConfig.CheckInterval)
             end
         end
     end)
@@ -302,13 +302,13 @@ Citizen.CreateThread(
             Citizen.Wait(200)
         end
 
-        local range = math.max(Config.MarkerDistance, Config.LootDistance)
+        local range = math.max(lcConfig.MarkerDistance, lcConfig.LootDistance)
 
         while true do
             if not looting then
                 checkLoot(range)
             end
 
-            Citizen.Wait(Config.SearchInterval)
+            Citizen.Wait(lcConfig.SearchInterval)
         end
     end)

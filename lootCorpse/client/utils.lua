@@ -1,5 +1,5 @@
 function showNotification(ESX, text, color)
-    if Config.UsePNotify then
+    if lcConfig.UsePNotify then
         TriggerEvent('pNotify:SendNotification', {
             type = color == 'r' and 'error' or 'info',
             text = text,
@@ -10,7 +10,7 @@ function showNotification(ESX, text, color)
 end
 
 function showHelpText(text)
-    if Config.EnableHelpText then
+    if lcConfig.EnableHelpText then
         SetTextComponentFormat('STRING')
         AddTextComponentString(text)
         DisplayHelpTextFromStringLabel(0, 0, 1, -1)

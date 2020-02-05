@@ -29,7 +29,7 @@ Citizen.CreateThread( function()
 Citizen.Wait(10000)
 while true do
 Citizen.Wait(1000)
-	if GetDistanceBetweenCoords(Config.PickupBlip.x,Config.PickupBlip.y,Config.PickupBlip.z, GetEntityCoords(GetPlayerPed(-1))) <= 200 then
+	if GetDistanceBetweenCoords(cokeConfig.PickupBlip.x,cokeConfig.PickupBlip.y,cokeConfig.PickupBlip.z, GetEntityCoords(GetPlayerPed(-1))) <= 200 then
 		if spawned == false then
 			for i=1, 80 do
 	        	TriggerEvent('KCoke:start')
@@ -50,27 +50,27 @@ end)
 local displayed = false
 local menuOpen = false
 
-local blipPickup = AddBlipForCoord(Config.PickupBlip.x,Config.PickupBlip.y,Config.PickupBlip.z)
+local blipPickup = AddBlipForCoord(cokeConfig.PickupBlip.x,cokeConfig.PickupBlip.y,cokeConfig.PickupBlip.z)
 
-			SetBlipSprite (blipPickup, 514)
-			SetBlipDisplay(blipPickup, 4)
-			SetBlipScale  (blipPickup, 1.1)
-			SetBlipColour (blipPickup, 24)
-			SetBlipAsShortRange(blipPickup, true)
-			BeginTextCommandSetBlipName("STRING")
-			AddTextComponentString("Cocoa Leaves Plantation")
-			EndTextCommandSetBlipName(blipPickup)
-			
-local blipProcess = AddBlipForCoord(Config.Processing.x, Config.Processing.y, Config.Processing.z)
+SetBlipSprite (blipPickup, 514)
+SetBlipDisplay(blipPickup, 4)
+SetBlipScale  (blipPickup, 1.1)
+SetBlipColour (blipPickup, 24)
+SetBlipAsShortRange(blipPickup, true)
+BeginTextCommandSetBlipName("STRING")
+AddTextComponentString("Cocoa Leaves Plantation")
+EndTextCommandSetBlipName(blipPickup)
 
-			SetBlipSprite (blipProcess, 514)
-			SetBlipDisplay(blipProcess, 4)
-			SetBlipScale  (blipProcess, 1.1)
-			SetBlipColour (blipProcess, 24)
-			SetBlipAsShortRange(blipProcess, true)
-			BeginTextCommandSetBlipName("STRING")
-			AddTextComponentString("Cocaine production")
-			EndTextCommandSetBlipName(blipProcess)
+local blipProcess = AddBlipForCoord(cokeConfig.Processing.x, cokeConfig.Processing.y, cokeConfig.Processing.z)
+
+SetBlipSprite (blipProcess, 514)
+SetBlipDisplay(blipProcess, 4)
+SetBlipScale  (blipProcess, 1.1)
+SetBlipColour (blipProcess, 24)
+SetBlipAsShortRange(blipProcess, true)
+BeginTextCommandSetBlipName("STRING")
+AddTextComponentString("Cocaine production")
+EndTextCommandSetBlipName(blipProcess)
 			
 
 
@@ -101,10 +101,10 @@ Citizen.CreateThread(function()
 				end
 			end
 			
-			for i=1, #Config.Zones, 1 do
-			if GetDistanceBetweenCoords(Config.Zones[i], GetEntityCoords(GetPlayerPed(-1))) < 150 then			
-				DrawMarker(1, Config.Zones[i], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.3, 1.3, 1.0, 0, 100, 205, 110, 0, 1, 0, 0)	
-				if GetDistanceBetweenCoords(Config.Zones[i], GetEntityCoords(GetPlayerPed(-1)), true) < 2 then
+			for i=1, #cokeConfig.Zones, 1 do
+			if GetDistanceBetweenCoords(cokeConfig.Zones[i], GetEntityCoords(GetPlayerPed(-1))) < 150 then			
+				DrawMarker(1, cokeConfig.Zones[i], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.3, 1.3, 1.0, 0, 100, 205, 110, 0, 1, 0, 0)	
+				if GetDistanceBetweenCoords(cokeConfig.Zones[i], GetEntityCoords(GetPlayerPed(-1)), true) < 2 then
 				--if ShowHelpNotification == true then
 				    ESX.ShowHelpNotification('Press ~INPUT_PICKUP~ to process your coca leaves')	
 				--end		
@@ -121,15 +121,15 @@ Citizen.CreateThread(function()
 				    end
 			    end
 					
-			if GetDistanceBetweenCoords(Config.Zones[i], GetEntityCoords(GetPlayerPed(-1)), true) < 5 and GetDistanceBetweenCoords(Config.Zones[i], GetEntityCoords(GetPlayerPed(-1)), true) > 3 then
+			if GetDistanceBetweenCoords(cokeConfig.Zones[i], GetEntityCoords(GetPlayerPed(-1)), true) < 5 and GetDistanceBetweenCoords(cokeConfig.Zones[i], GetEntityCoords(GetPlayerPed(-1)), true) > 3 then
 				process = false
 			end
 		end
 		end	
-			for i=1, #Config.Zones2, 1 do
-			if GetDistanceBetweenCoords(Config.Zones2[i], GetEntityCoords(GetPlayerPed(-1))) < 150 then			
-				DrawMarker(1, Config.Zones2[i], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.3, 1.3, 1.0, 0, 100, 205, 110, 0, 1, 0, 0)	
-				if GetDistanceBetweenCoords(Config.Zones2[i], GetEntityCoords(GetPlayerPed(-1)), true) < 2 then
+			for i=1, #cokeConfig.Zones2, 1 do
+			if GetDistanceBetweenCoords(cokeConfig.Zones2[i], GetEntityCoords(GetPlayerPed(-1))) < 150 then			
+				DrawMarker(1, cokeConfig.Zones2[i], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.3, 1.3, 1.0, 0, 100, 205, 110, 0, 1, 0, 0)	
+				if GetDistanceBetweenCoords(cokeConfig.Zones2[i], GetEntityCoords(GetPlayerPed(-1)), true) < 2 then
 				--if ShowHelpNotification == true then
 				    ESX.ShowHelpNotification('Press ~INPUT_PICKUP~ to bag your coke')	
 				--end		
@@ -146,7 +146,7 @@ Citizen.CreateThread(function()
 				    end
 			    end
 					
-			if GetDistanceBetweenCoords(Config.Zones2[i], GetEntityCoords(GetPlayerPed(-1)), true) < 5 and GetDistanceBetweenCoords(Config.Zones2[i], GetEntityCoords(GetPlayerPed(-1)), true) > 3 then
+			if GetDistanceBetweenCoords(cokeConfig.Zones2[i], GetEntityCoords(GetPlayerPed(-1)), true) < 5 and GetDistanceBetweenCoords(cokeConfig.Zones2[i], GetEntityCoords(GetPlayerPed(-1)), true) > 3 then
 				bag = false
 			end
 		end
@@ -216,8 +216,8 @@ RegisterNetEvent('KCoke:start')
 AddEventHandler('KCoke:start', function()
 	Citizen.Wait(10)
 	local set = false
-	local rnX = Config.PickupBlip.x + math.random(-35, 35)
-	local rnY = Config.PickupBlip.y + math.random(-35, 35)
+	local rnX = cokeConfig.PickupBlip.x + math.random(-35, 35)
+	local rnY = cokeConfig.PickupBlip.y + math.random(-35, 35)
 	local u, Z = GetGroundZFor_3dCoord(rnX ,rnY ,300.0,0)
 	table.insert(locations,{x=rnX, y=rnY, z=Z + 0.3});
 end)
@@ -227,8 +227,8 @@ RegisterNetEvent('KCoke:new')
 AddEventHandler('KCoke:new', function(id)
 	Citizen.Wait(10)
 	local set = false
-	local rnX = Config.PickupBlip.x + math.random(-35, 35)
-	local rnY = Config.PickupBlip.y + math.random(-35, 35)
+	local rnX = cokeConfig.PickupBlip.x + math.random(-35, 35)
+	local rnY = cokeConfig.PickupBlip.y + math.random(-35, 35)
 	local u, Z = GetGroundZFor_3dCoord(rnX ,rnY ,300.0,0)
 	locations[id].x = rnX
 	locations[id].y = rnY
